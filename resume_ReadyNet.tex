@@ -1,0 +1,238 @@
+%-----------------------------------------------------------------------------------------------------------------------------------------------%
+%	The MIT License (MIT)
+%	Copyright (c) 2021 Jitin Nair
+%-----------------------------------------------------------------------------------------------------------------------------------------------%
+
+\documentclass[a4paper,12pt]{article}
+
+%----------------------------------------------------------------------------------------
+%	FONT (Enable XeLaTeX for Chinese)
+%----------------------------------------------------------------------------------------
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\defaultfontfeatures{Ligatures=TeX}
+\setmainfont{TeX Gyre Termes} % safe default on Overleaf
+\setsansfont{TeX Gyre Heros}
+\setmonofont{TeX Gyre Cursor}
+\setCJKmainfont{Noto Serif CJK SC} % safe default on Overleaf
+\setCJKmonofont{Noto Sans CJK SC}  % Add this line to satisfy the warning
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES
+%----------------------------------------------------------------------------------------
+\usepackage{url}
+\usepackage{parskip}
+
+\RequirePackage{color}
+\RequirePackage{graphicx}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[scale=0.9]{geometry}
+
+\usepackage{tabularx}
+\usepackage{enumitem}
+
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+
+\usepackage{supertabular}
+\usepackage{tabularx}
+\newlength{\fullcollw}
+\setlength{\fullcollw}{0.47\textwidth}
+
+\usepackage{titlesec}
+\usepackage{multicol}
+\usepackage{multirow}
+
+\titleformat{\section}{\Large\scshape\raggedright}{}{0em}{}[\titlerule]
+\titlespacing{\section}{0pt}{10pt}{10pt}
+
+% publications
+\usepackage[style=authoryear,sorting=ynt,maxbibnames=10]{biblatex}
+
+% hyperref
+\usepackage[unicode, draft=false]{hyperref}
+\definecolor{linkcolour}{rgb}{0,0.2,0.6}
+\hypersetup{colorlinks,breaklinks,urlcolor=linkcolour,linkcolor=linkcolour}
+\addbibresource{citations.bib}
+\setlength\bibitemsep{0.7em}
+
+% social icons
+\usepackage{fontawesome5}
+
+%----------------------------------------------------------------------------------------
+% Job listing environments
+%----------------------------------------------------------------------------------------
+\newenvironment{jobshort}[2]
+{
+\begin{tabularx}{\linewidth}{@{}l X r@{}}
+\textbf{#1} & \hfill &  #2 \\[3.75pt]
+\end{tabularx}
+}
+{
+}
+
+\newenvironment{joblong}[2]
+{
+\begin{tabularx}{\linewidth}{@{}l X r@{}}
+\textbf{#1} & \hfill &  #2 \\[3.75pt]
+\end{tabularx}
+\begin{minipage}[t]{\linewidth}
+\begin{itemize}[nosep,after=\strut,leftmargin=1.2em,itemsep=3pt,label=--]
+}
+{
+\end{itemize}
+\end{minipage}
+}
+
+\usepackage{etaremune}
+\usepackage{amssymb} % Required for the diamond symbol (\lozenge)
+
+%----------------------------------------------------------------------------------------
+%	BEGIN DOCUMENT
+%----------------------------------------------------------------------------------------
+\begin{document}
+\pagestyle{empty}
+
+%----------------------------------------------------------------------------------------
+%	TITLE
+%----------------------------------------------------------------------------------------
+\begin{tabularx}{\linewidth}{@{} C @{}}
+{\Huge Xihan Yao \quad {\Large }} \\[6pt]
+
+Austin, TX \ $|$ \
+\href{tel:+13413339583}{\raisebox{-0.05\height}\faMobile\ +1 (341) 333 9583} \ $|$ \
+\href{mailto:xyaoaf@utexas.edu}{\raisebox{-0.05\height}\faEnvelope\ xyaoaf@utexas.edu} \ $|$ \
+\href{https://www.linkedin.com/in/xihan-yao-6381b3181/}{\raisebox{-0.05\height}\faLinkedin\ LinkedIn} \ $|$ \
+\href{https://github.com/xyaoaf}{\raisebox{-0.05\height}\faGithub\ GitHub} \ $|$ \
+\href{https://xyaoaf.github.io/}{\raisebox{-0.05\height}\faGlobe\ Website}
+
+\end{tabularx}
+
+
+
+%----------------------------------------------------------------------------------------
+%	RESEARCH SUMMARY
+%----------------------------------------------------------------------------------------
+\section{Summary}
+GeoAI and data engineering-focused researcher building scalable, production-oriented geospatial data pipelines. Experienced in processing TB-scale, multi-modal datasets (Street View, land cover, AlphaEarth embedding) and developing reproducible workflows for spatial feature extraction and large-scale modeling. Strong background in spatial analytics, and integrating machine learning and foundation model embeddings into structured data systems.
+
+
+%----------------------------------------------------------------------------------------
+%	EDUCATION
+%----------------------------------------------------------------------------------------
+\section{Education}
+\begin{tabularx}{\linewidth}{@{}l X@{}}
+2025 -- present &
+\textbf{The University of Texas at Austin} --- PhD student, Geography and the Environment \\
+& Supervisor: Professor Yuhao Kang \\
+& Link: \href{https://sites.utexas.edu/gisense/}{GISense Lab}\\[3pt]
+
+2021 -- 2023 &
+\textbf{University of California, Berkeley} --- MLA, Environmental Planning \\[3pt]
+
+2017 -- 2021 &
+\textbf{Hong Kong University of Science and Technology (HKUST)} --- BSc, Environmental Management and Technology \\[3pt]
+
+2019 &
+\textbf{University of Washington, Seattle} --- Exchange Student \\
+\end{tabularx}
+
+%----------------------------------------------------------------------------------------
+%	EXPERIENCE
+%----------------------------------------------------------------------------------------
+\section{Experience}
+
+\begin{joblong}{The University of Texas at Austin --- Research Assistant}{Austin, TX, 2025 -- present}
+\item Leading a national-scale GeoAI project analyzing relationships between built environment features and Big Five personality traits across U.S. urban areas.
+\item Built and maintained scalable data pipelines to process and harmonize TB-scale, multi-modal geospatial datasets, including 12M+ individual-level survey records, Street View imagery, land cover data, and POI data.
+\item Integrated foundation model embeddings (Google AlphaEarth) into structured geospatial workflows to evaluate added predictive signals beyond traditional environmental features.
+\item Implemented spatial diagnostics and validation workflows, including residual analysis and spatial autocorrelation tests, to identify geographic bias and model failure modes.
+\item Managed large-scale geospatial data storage and processing pipelines, ensuring efficient data handling, reproducibility, and structured outputs for downstream applications.
+\end{joblong}
+
+\begin{joblong}{EarthDefine, LLC --- GIS Analyst}{Redmond, WA, 2024 -- 2025}
+\item Designed and implemented scalable deep learning pipelines for sub-meter (0.6m) resolution land cover classification and change detection across U.S. cities using NAIP imagery.
+\item Led a team to develop large-scale geospatial data products, including nationwide canopy coverage metrics and multi-year land-use change datasets, with a focus on data quality control, consistency, and efficient batch processing.
+\end{joblong}
+
+%----------------------------------------------------------------------------------------
+% COMBINED UC BERKELEY EXPERIENCE
+%----------------------------------------------------------------------------------------
+\textbf{University of California, Berkeley} \hfill Berkeley, CA, 2022 -- 2023 \\
+\vspace{-18pt}
+
+\begin{itemize}[leftmargin=1.5em, label={}]
+    % Role 1: Lecturer
+    \item \textbf{— Lecturer, GIS} \hfill 2023
+    \begin{itemize}[nosep, leftmargin=1.2em, label=--]
+        \item Managed UC Berkeley's largest GIS course (GEOG/LDARCH C188) with 200 students from diverse academic backgrounds. Delivered lectures and supervised TAs in conducting laboratory sessions.
+        \item Revamped the curriculum to incorporate cutting-edge GIS concepts and tools in collaboration with ESRI, enhancing GIS data management and sharing for instructional purposes.
+    \end{itemize}
+    
+    \vspace{3pt}
+
+    % Role 2: Graduate Student Instructor
+    \item \textbf{— Graduate Student Instructor, Applied Remote Sensing \& GIS} \hfill 2022 -- 2023
+    \begin{itemize}[nosep, leftmargin=1.2em, label=--]
+        \item For Applied Remote Sensing (ESPM/LDARCH C289), taught JavaScript programming in Google Earth Engine, covering object-based and pixel-based image analysis, land use classification with machine learning, and utilizing diverse data sources such as Landsat, MODIS, NAIP, and LiDAR.
+        \item For GIS (GEOG/LDARCH C188), conducted lab sessions using ArcGIS Pro, updated course materials, and recorded new instructional videos to facilitate the transition from ArcGIS Desktop to ArcGIS Pro.
+    \end{itemize}
+\end{itemize}
+
+% \begin{joblong}{Beijing Smart \& Green Transport Technology --- Data Research and Analysis Intern}{2020}
+% \item Analyzed carbon abatement potential in China's transportation sectors under various green technology incentive policy scenarios; utilized a multi-parameter model to assess effectiveness under the supervision of Dr. Dongquan He.
+% \end{joblong}
+%----------------------------------------------------------------------------------------
+%	AWARDS \& CERTIFICATES
+%----------------------------------------------------------------------------------------
+\section{Awards \& Certificates}
+
+\begin{itemize}[leftmargin=1.5em, itemsep=4pt, label=--]
+
+    \item \textbf{Energy AI Hackathon (6th Annual)}, UT Austin — Hildebrand Department of Petroleum and Geosystems Engineering (PGE). \\
+    Awarded \textbf{Fourth Place} in a competitive machine learning challenge (46 teams). 
+    Developed a "similarity–geospatial proximity gated model." Achieving strong predictive accuracy and interpretability for subsurface production forecasting under sparse, heterogeneous conditions. \hfill 2026
+
+    \item \textbf{Geoscience Hackathon}, UT Austin — Jackson School of Geosciences. \\
+    Awarded \textbf{Second Place}. Project: ``Tracking Earth's Changes with AlphaEarth Foundations.'' Developed a modular geospatial analysis pipeline allowing users to define custom areas of interest (AOI) and automatically extract temporal change metrics, including change year of detection, magnitude and duration foundation model embeddings. \hfill 2025
+
+    \item \textbf{CyberTraining Summer School}, Texas A\&M University — Department of Geography. \\
+    Awarded \textbf{First Place}. Project: ``Assessing Instance-based Disaster Impact Through Multimodal Geospatial Data''  \hfill 2025
+
+    \item \textbf{IEEE GRSS GeoPitch Award}, IEEE Geoscience and Remote Sensing Society. \\
+    Awarded \textbf{Third Place}. Elevator Pitch Presentation: ``Object-Based Urban Trees Characterization with Airborne LiDAR'' \hfill 2023
+
+\end{itemize}
+
+
+%----------------------------------------------------------------------------------------
+%	PUBLICATIONS (BibLaTeX)
+%----------------------------------------------------------------------------------------
+\section{Publications}
+
+\begin{etaremune}[leftmargin=1.5em, itemsep=0.7em, start=3]
+    % Publication 3 (Newest)
+    \item \textbf{Yao, X.}, Kim, M., Dronova, I., McBride, J. R., Kondolf, G. M., \& Radke, J. D. (2025). Community-scale microclimate simulation using Airborne Laser Scanning and object-based urban tree classification. \textit{Landscape and Urban Planning, 263}, 105420. DOI: \href{https://doi.org/10.1016/j.landurbplan.2025.105420}{10.1016/j.landurbplan.2025.105420}
+
+    % Publication 2
+    \item Tong, J. C. K., \textbf{Yao, X. H.}, Lau, E. S. L., Cheung, W. K. S., Ho, K. K. S., Ng, V. Y. Y., \& Lau, A. P. S. (2023). Light pollution impact assessment in Hong Kong: Multi-dimensional measurement and spatial numerical modelling on integrated light sources in the neighbourhood level. \textit{Energy \& Environment, 35}(5), 2497--2516. DOI: \href{https://doi.org/10.1177/0958305X221146942}{10.1177/0958305X221146942}
+
+\end{etaremune}
+
+
+%----------------------------------------------------------------------------------------
+%	SKILLS
+%----------------------------------------------------------------------------------------
+\section{Skills}
+\begin{tabularx}{\linewidth}{@{}l X@{}}
+\textbf{Programming \& Data Science} & 
+Python (Pandas, NumPy, GeoPandas, Rasterio, PySAL, TensorFlow, PyTorch), SQL, R, JavaScript (Google Earth Engine) \\ [3pt]
+\textbf{GIS \& Remote Sensing} & 
+ESRI products (ArcGIS Pro, ArcGIS Online), QGIS, Google Earth Engine, Google AlphaEarth Foundations, LiDAR \\ [3pt]
+\textbf{Computing \& Systems} & 
+Linux Shell, High-Performance Computing (HPC), GPU server management, batch processing, Git/GitHub \\
+\end{tabularx}
+
+\vfill
+\center{\footnotesize Last updated: \today}
+
+\end{document}

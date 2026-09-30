@@ -1,0 +1,313 @@
+%-----------------------------------------------------------------------------------------------------------------------------------------------%
+%	The MIT License (MIT)
+%	Copyright (c) 2021 Jitin Nair
+%-----------------------------------------------------------------------------------------------------------------------------------------------%
+
+\documentclass[a4paper,12pt]{article}
+
+%----------------------------------------------------------------------------------------
+%	FONT (Enable XeLaTeX for Chinese)
+%----------------------------------------------------------------------------------------
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\defaultfontfeatures{Ligatures=TeX}
+\setmainfont{TeX Gyre Termes} % safe default on Overleaf
+\setsansfont{TeX Gyre Heros}
+\setmonofont{TeX Gyre Cursor}
+\setCJKmainfont{Noto Serif CJK SC} % safe default on Overleaf
+\setCJKmonofont{Noto Sans CJK SC}  % Add this line to satisfy the warning
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES
+%----------------------------------------------------------------------------------------
+\usepackage{url}
+\usepackage{parskip}
+
+\RequirePackage{color}
+\RequirePackage{graphicx}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[scale=0.9]{geometry}
+
+\usepackage{tabularx}
+\usepackage{enumitem}
+
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+
+\usepackage{supertabular}
+\usepackage{tabularx}
+\newlength{\fullcollw}
+\setlength{\fullcollw}{0.47\textwidth}
+
+\usepackage{titlesec}
+\usepackage{multicol}
+\usepackage{multirow}
+
+\titleformat{\section}{\Large\scshape\raggedright}{}{0em}{}[\titlerule]
+\titlespacing{\section}{0pt}{10pt}{10pt}
+
+% publications
+\usepackage[style=authoryear,sorting=ynt,maxbibnames=10]{biblatex}
+
+% hyperref
+\usepackage[unicode, draft=false]{hyperref}
+\definecolor{linkcolour}{rgb}{0,0.2,0.6}
+\hypersetup{colorlinks,breaklinks,urlcolor=linkcolour,linkcolor=linkcolour}
+\addbibresource{citations.bib}
+\setlength\bibitemsep{0.7em}
+
+% social icons
+\usepackage{fontawesome5}
+
+%----------------------------------------------------------------------------------------
+% Job listing environments
+%----------------------------------------------------------------------------------------
+\newenvironment{jobshort}[2]
+{
+\begin{tabularx}{\linewidth}{@{}l X r@{}}
+\textbf{#1} & \hfill &  #2 \\[3.75pt]
+\end{tabularx}
+}
+{
+}
+
+\newenvironment{joblong}[2]
+{
+\begin{tabularx}{\linewidth}{@{}l X r@{}}
+\textbf{#1} & \hfill &  #2 \\[3.75pt]
+\end{tabularx}
+\begin{minipage}[t]{\linewidth}
+\begin{itemize}[nosep,after=\strut,leftmargin=1.2em,itemsep=3pt,label=--]
+}
+{
+\end{itemize}
+\end{minipage}
+}
+
+\usepackage{etaremune}
+\usepackage{amssymb} % Required for the diamond symbol (\lozenge)
+
+%----------------------------------------------------------------------------------------
+%	BEGIN DOCUMENT
+%----------------------------------------------------------------------------------------
+\begin{document}
+\pagestyle{empty}
+
+%----------------------------------------------------------------------------------------
+%	TITLE
+%----------------------------------------------------------------------------------------
+\begin{tabularx}{\linewidth}{@{} C @{}}
+{\Huge Xihan Yao \quad {\Large 姚希翰}} \\[6pt]
+
+Austin, TX \ $|$ \
+\href{tel:+13413339583}{\raisebox{-0.05\height}\faMobile\ +1 (341) 333 9583} \ $|$ \
+\href{mailto:xyaoaf@utexas.edu}{\raisebox{-0.05\height}\faEnvelope\ xyaoaf@utexas.edu} \ $|$ \
+\href{https://www.linkedin.com/in/xihan-yao-6381b3181/}{\raisebox{-0.05\height}\faLinkedin\ LinkedIn} \ $|$ \
+\href{https://github.com/xyaoaf}{\raisebox{-0.05\height}\faGithub\ GitHub} \ $|$ \
+\href{https://xyaoaf.github.io/}{\raisebox{-0.05\height}\faGlobe\ Website}
+
+\end{tabularx}
+
+
+
+%----------------------------------------------------------------------------------------
+%	RESEARCH SUMMARY
+%----------------------------------------------------------------------------------------
+\section{Research Interests}
+My research interests center on integrating Remote Sensing, GIS, and GeoAI technologies for multimodal, explicit geospatial and environmental modeling, with a focus on heterogeneous, human–nature coupled landscapes. I am particularly interested in analyzing ecosystem services and examining how diverse landscape features interact to shape environmental and social resilience.
+
+%----------------------------------------------------------------------------------------
+%	EDUCATION
+%----------------------------------------------------------------------------------------
+\section{Education}
+\begin{tabularx}{\linewidth}{@{}l X@{}}
+2025 -- present &
+\textbf{The University of Texas at Austin} --- PhD student, Geography and the Environment \\
+& Supervisor: Professor Yuhao Kang \\
+& Link: \href{https://sites.utexas.edu/gisense/}{GISense Lab}\\[3pt]
+
+2021 -- 2023 &
+\textbf{University of California, Berkeley} --- MLA, Environmental Planning \\
+& Thesis: Towards more effective urban vegetation monitoring and management: Studying of urban tree characteristics and
+their relationship to the urban heat island effect with high-resolution remote sensing products, a case study in
+Portland, Oregon, USA. \\
+& Link: \href{https://doi.org/10.1016/j.landurbplan.2025.105420}{Publication} \\[3pt]
+
+2017 -- 2021 &
+\textbf{Hong Kong University of Science and Technology (HKUST)} --- BSc, Environmental Management and Technology \\
+& Capstone Project: Light pollution impact assessment in Hong Kong: Multi-dimensional measurement and spatial numerical
+modelling on integrated light sources in the neighborhood level. \\
+& Link: \href{https://journals.sagepub.com/doi/abs/10.1177/0958305X221146942}{Publication} \\[3pt]
+
+2019 &
+\textbf{University of Washington, Seattle} --- Exchange Student \\
+\end{tabularx}
+
+%----------------------------------------------------------------------------------------
+%	EXPERIENCE
+%----------------------------------------------------------------------------------------
+\section{Experience}
+
+\begin{joblong}{The University of Texas at Austin --- Research Assistant}{Austin, TX, 2025 -- present}
+\item Leading a preregistered, national-scale research project modeling relationships between built environment characteristics and Big Five personality traits across U.S. urbanized areas.
+\item Designing reproducible, Python-based workflows to process and harmonize TB-scale, multi-modal geospatial data, including Google Street View imagery, high-resolution land cover, POI data, and human mobility records.
+\item Applying Earth foundation models (e.g., Google AlphaEarth) and statistical modeling to evaluate whether high-capacity embeddings provide additional explanatory power beyond traditional built-environment variables.
+\item Conducting model diagnostics and spatial analyses (residual analysis, spatial autocorrelation tests) to identify geographic outliers, systematic failure modes, and limits of model generalizability.
+\item Supervising four undergraduate research assistants and coordinating collaborative research across the lab and with external collaborators.
+\end{joblong}
+
+
+\begin{joblong}{EarthDefine, LLC --- GIS Analyst}{Redmond, WA, 2024 -- 2025}
+\item Designed and implemented deep learning–based raster classification workflows for city-scale, sub-meter land cover mapping and change detection, emphasizing reproducible batch processing and quality control.
+\item Led a team of GIS specialists to deliver operational geospatial data products across the U.S., including community-level canopy coverage metrics and multi-year land-use change datasets; supported external stakeholders such as the Arbor Day Foundation and municipal governments.
+\end{joblong}
+
+
+%----------------------------------------------------------------------------------------
+% COMBINED UC BERKELEY EXPERIENCE
+%----------------------------------------------------------------------------------------
+\textbf{University of California, Berkeley} \hfill Berkeley, CA, 2022 -- 2023 \\
+\vspace{-18pt}
+
+\begin{itemize}[leftmargin=1.5em, label={}]
+    % Role 1: Lecturer
+    \item \textbf{— Lecturer, GIS} \hfill 2023
+    \begin{itemize}[nosep, leftmargin=1.2em, label=--]
+        \item Served as instructor of record for UC Berkeley’s largest GIS course (GEOG/LDARCH C188; 200 students), delivering lectures, designing assessments, and supervising a multi-TA instructional team.
+        \item Redesigned and modernized the curriculum to incorporate contemporary GIS concepts and tools, working with ESRI to improve data workflows, reproducibility, and instructional data management.
+    \end{itemize}
+    
+    \vspace{3pt}
+
+    % Role 2: Graduate Student Instructor
+    \item \textbf{— Graduate Student Instructor, Applied Remote Sensing \& GIS} \hfill 2022 -- 2023
+    \begin{itemize}[nosep, leftmargin=1.2em, label=--]
+        \item Taught applied remote sensing labs using Google Earth Engine (JavaScript), covering object- and pixel-based image analysis, machine-learning land use classification, and multi-source data integration (Landsat, MODIS, NAIP, LiDAR).
+        \item Led hands-on GIS labs in ArcGIS Pro, updated legacy course materials, and produced instructional videos to support the transition from ArcGIS Desktop to ArcGIS Pro.
+    \end{itemize}
+
+    % Role 3: Research Assistant (Condensed)
+    \item \textbf{— Research Assistant} \hfill 2022
+    \begin{itemize}[nosep, leftmargin=1.2em, label=--]
+        \item \textit{Korean Tidal Flats, Hwaseong Wetland World Heritage Inscription Study} (\href{https://saveinternational.org/wp-content/uploads/2023/02/hwaseongwetlands_jan15th_2023.pdf}{Project Report}): Conducted spatial analysis of environmental and social factors to illuminate the significance and challenges of its World Heritage site designation.
+    \end{itemize}
+\end{itemize}
+
+\begin{joblong}{Beijing Smart \& Green Transport Technology --- Data Research and Analysis Intern}{2020}
+\item Analyzed carbon abatement potential in China's transportation sectors under various green technology incentive policy scenarios; utilized a multi-parameter model to assess effectiveness under the supervision of Dr. Dongquan He.
+\end{joblong}
+
+%----------------------------------------------------------------------------------------
+%	PUBLICATIONS (BibLaTeX)
+%----------------------------------------------------------------------------------------
+\section{Publications}
+
+\begin{etaremune}[leftmargin=1.5em, itemsep=0.7em, start=3]
+    % Publication 3 (Newest)
+    \item \textbf{Yao, X.}, Kim, M., Dronova, I., McBride, J. R., Kondolf, G. M., \& Radke, J. D. (2025). Community-scale microclimate simulation using Airborne Laser Scanning and object-based urban tree classification. \textit{Landscape and Urban Planning, 263}, 105420. DOI: \href{https://doi.org/10.1016/j.landurbplan.2025.105420}{10.1016/j.landurbplan.2025.105420}
+
+    % Publication 2
+    \item Tong, J. C. K., \textbf{Yao, X. H.}, Lau, E. S. L., Cheung, W. K. S., Ho, K. K. S., Ng, V. Y. Y., \& Lau, A. P. S. (2023). Light pollution impact assessment in Hong Kong: Multi-dimensional measurement and spatial numerical modelling on integrated light sources in the neighbourhood level. \textit{Energy \& Environment, 35}(5), 2497--2516. DOI: \href{https://doi.org/10.1177/0958305X221146942}{10.1177/0958305X221146942}
+
+    % Publication 1 (Oldest)
+    \item Chan, S. N., Fan, Y. W., \& \textbf{Yao, X. H.} (2022). Mapping of coastal surface chlorophyll-a concentration by multispectral reflectance measurement from unmanned aerial vehicles. \textit{Journal of Hydro-environment Research, 44}, 88--101. DOI: \href{https://doi.org/10.1016/j.jher.2022.08.003}{10.1016/j.jher.2022.08.003}
+    % \\ $\lozenge$ \textit{Best Paper Award candidate} % Example of diamond bullet from Yuhao Kang's CV
+\end{etaremune}
+
+%----------------------------------------------------------------------------------------
+%	CONFERENCE PROCEEDINGS & PRESENTATIONS
+%----------------------------------------------------------------------------------------
+\section{Conference Presentations \& Proceedings}
+
+\begin{etaremune}[leftmargin=1.5em, itemsep=0.7em, start=6]
+    % Presentation 6 (Newest)
+    \item \textbf{Yao, X.}, Kim, M., Dronova, I., McBride, J. R., Kondolf, G. M., \& Radke, J. D. (2025, October 23--25). \textit{Community-scale microclimate simulation using Airborne Laser Scanning and object-based urban tree classification} [Paper presentation]. ACSP 2025 Minneapolis 65th Annual Conference, Minneapolis, MN, United States.
+    
+    % Presentation 5 (Newest)
+    \item Main, K. L., \textbf{Yao, X.}, Raine, H., Farley, M., Malone, H., Serra-Llobet, A., Kondolf, G. M., \& Radke, J. (2024, June 23--27). \textit{The levee effect and residual risk in Sacramento, California: Have we been good or lucky?} [Paper presentation]. ASFPM Foundation 14th Annual Student Paper Competition, Salt Lake City, UT, United States.
+
+    % Presentation 4
+    \item \textbf{Yao, X.}, \& Kim, M. (2024, June 3--7). \textit{Object-based ecosystem services evaluation with higher spatial resolution, multidimensional remote sensing} [Poster presentation]. 2024 Natural Capital Symposium, Stanford, CA, United States.
+
+    % Presentation 3
+    \item \textbf{Yao, X.}, \& Kim, M. (2023, December 11--15). \textit{A Lidar-based method for 3D urban forest evaluation and microclimate assessment, a case study in Portland, Oregon, USA} [Poster presentation]. American Geophysical Union (AGU) Annual Meeting 2023, San Francisco, CA, United States. DOI: \href{https://doi.org/10.22541/essoar.170914530.09781933/v1}{10.22541/essoar.170914530.09781933/v1}
+
+    % Presentation 2
+    \item \textbf{Yao, X.}, \& Kim, M. (2023, July 16--21). \textit{From local to micro: Exploratory data analysis on urban forests and microclimates in Portland, Oregon, USA} [Conference session]. IGARSS 2023 - 2023 IEEE International Geoscience and Remote Sensing Symposium, Pasadena, CA, United States. DOI: \href{https://doi.org/10.1109/IGARSS52108.2023.10282088}{10.1109/IGARSS52108.2023.10282088}
+
+    % Presentation 1 (Oldest)
+    \item Hester, R., McNally, M., Stern, M., \textbf{Yao, X.}, \& Malone, H. (2022, September 8). \textit{The factor of time, Hwaseong Wetland} [Conference session]. Association of Pacific Rim Universities Sustainable Cities and Landscapes (APRU-SCL), Honolulu, HI, United States (Remote).
+\end{etaremune}
+
+%----------------------------------------------------------------------------------------
+%	AWARDS \& CERTIFICATES
+%----------------------------------------------------------------------------------------
+\section{Awards \& Certificates}
+
+\textbf{Honors and Awards}
+\begin{itemize}[leftmargin=1.5em, itemsep=4pt, label=--]
+
+    \item \textbf{Energy AI Hackathon (6th Annual)}, UT Austin — Hildebrand Department of Petroleum and Geosystems Engineering (PGE). \\
+    Awarded \textbf{Fourth Place} in a competitive machine learning challenge (46 teams). 
+    Developed a "similarity–geospatial proximity gated model" achieving strong predictive accuracy and interpretability for subsurface production forecasting under sparse, heterogeneous conditions. \hfill 2026
+
+    \item \textbf{Geoscience Hackathon}, UT Austin — Jackson School of Geosciences. \\
+    Awarded \textbf{Second Place}. Project: ``Tracking Earth's Changes with AlphaEarth Foundations,'' applying foundation model embeddings for large-scale, flexible landscape system change detection. \hfill 2025
+
+    \item \textbf{CyberTraining Summer School}, Texas A\&M University — Department of Geography. \\
+    Awarded \textbf{First Place}. Project: ``Assessing Instance-based Disaster Impact Through Multimodal Geospatial Data''  \hfill 2025
+
+    \item \textbf{Collegiate Student Paper Competition}, Association of State Floodplain Managers (ASFPM). \\
+    Awarded \textbf{Third Place}. Paper: ``The Levee Effect and Residual Risk in Sacramento, California'' \hfill 2024
+
+    \item \textbf{IEEE GRSS GeoPitch Award}, IEEE Geoscience and Remote Sensing Society. \\
+    Awarded \textbf{Third Place}. Elevator Pitch Presentation: ``Object-Based Urban Trees Characterization with Airborne LiDAR'' \hfill 2023
+
+\end{itemize}
+
+
+\vspace{4pt}
+\textbf{Professional Certificates}
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt, label=--]
+    \item Certificate in Geographic Information Science and Technology (GIST), UC Berkeley.  \hfill 2023
+    \item Certificate of Teaching and Learning in Higher Education, UC Berkeley \hfill 2023
+\end{itemize}
+
+%----------------------------------------------------------------------------------------
+%	PEER REVIEW
+%----------------------------------------------------------------------------------------
+\section{Peer Review Service}
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt, label=--]
+    \item \textit{Urban Forestry \& Urban Greening} (Impact Factor: 6.7)
+    \item \textit{Journal of Applied Remote Sensing} (Impact Factor: 1.4)
+    \item \textit{Computational Urban Science} (Impact Factor: 3.2)
+\end{itemize}
+
+%----------------------------------------------------------------------------------------
+%	MENTORSHIP \& LEADERSHIP
+%----------------------------------------------------------------------------------------
+\section{Mentorship \& Leadership}
+\begin{itemize}[leftmargin=1.5em, itemsep=6pt, label=--]
+    \item \textbf{NASA DEVELOP National Program} \hfill Fall 2024
+    \\ Technical Mentor for Student Internship Project: ``Quantifying Canopy Cover and Land Surface Temperature in San Jose to Identify Future Tree Planting Sites''.
+    
+    \item \textbf{Undergraduate Honors Thesis Mentor} \hfill 2023 -- 2024
+    \\ Thesis Mentor for Sarah Song (UC Berkeley, Statistics \& Data Science). Project: ``Urban Greenery in San Francisco.
+\end{itemize}
+
+%----------------------------------------------------------------------------------------
+%	SKILLS
+%----------------------------------------------------------------------------------------
+\section{Skills}
+\begin{tabularx}{\linewidth}{@{}l X@{}}
+\textbf{Programming \& Data Science} & 
+Python (TensorFlow, PyTorch, Scikit-learn, GeoPandas, Rasterio, PySAL), R, JavaScript (Google Earth Engine) \\ [3pt]
+\textbf{GIS \& Remote Sensing} & 
+ESRI products (ArcGIS Pro, ArcGIS Online), QGIS, Google Earth Engine, Google AlphaEarth Foundations, LiDAR \\ [3pt]
+\textbf{Computing \& Systems} & 
+Linux Shell, High-Performance Computing (HPC), GPU server management, batch processing, Git/GitHub \\
+\end{tabularx}
+
+\vfill
+\center{\footnotesize Last updated: \today}
+
+\end{document}
