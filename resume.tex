@@ -14,8 +14,15 @@
 \setmainfont{TeX Gyre Termes} % safe default on Overleaf
 \setsansfont{TeX Gyre Heros}
 \setmonofont{TeX Gyre Cursor}
-\setCJKmainfont{Noto Serif CJK SC} % safe default on Overleaf
-\setCJKmonofont{Noto Sans CJK SC}  % Add this line to satisfy the warning
+% Noto CJK is what Overleaf ships; macOS has Songti SC instead. Probe at compile
+% time so this one file builds unchanged in both places.
+\IfFontExistsTF{Noto Serif CJK SC}{
+  \setCJKmainfont{Noto Serif CJK SC}
+  \setCJKmonofont{Noto Sans CJK SC}
+}{
+  \setCJKmainfont{Songti SC}
+  \setCJKmonofont{Songti SC}
+}
 
 %----------------------------------------------------------------------------------------
 %	PACKAGES

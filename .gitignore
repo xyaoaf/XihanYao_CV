@@ -1,0 +1,22 @@
+# LaTeX build artefacts
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.run.xml
+*.toc
+*.synctex.gz
+*.xdv
+
+# Built PDFs are produced by `make` locally and by CI on push; they are not
+# tracked on main. The published copies live on the build branch and in
+# ../ (Job/CV_Resume/) under the YYMMDD_ naming used there.
+*.pdf
+
+# macOS / OneDrive
+.DS_Store
+Icon?

@@ -1,10 +1,24 @@
-NAME=cv
+# Documents in this repo. Plain `make` builds all of them.
+DOCS = cv resume resume_ExxonMobil resume_ReadyNet
+PDFS = $(addsuffix .pdf,$(DOCS))
 
-all:
-	latexmk -pdf ${NAME}.tex
+# These sources load fontspec + xeCJK, so they need XeLaTeX. Plain pdfLaTeX
+# (the -pdf flag the upstream template used) cannot compile them.
+LATEXMK = latexmk -xelatex -interaction=nonstopmode
+
+all: $(PDFS)
+
+%.pdf: %.tex citations.bib
+	$(LATEXMK) $<
+
+# Shortcuts: `make cv`, `make resume`, ...
+$(DOCS): %: %.pdf
 
 clean:
-	rm -f ${NAME}.aux ${NAME}.bbl ${NAME}.bcf ${NAME}.fdb_latexmk ${NAME}.fls ${NAME}.log ${NAME}.out ${NAME}.run.xml ${NAME}.blg ${NAME}.toc *\~
+	latexmk -c $(addsuffix .tex,$(DOCS)) 2>/dev/null || true
+	rm -f *.aux *.bbl *.bcf *.blg *.fdb_latexmk *.fls *.log *.out *.run.xml *.toc *.xdv *~
 
 distclean: clean
-	rm -f ${NAME}.pdf
+	rm -f $(PDFS)
+
+.PHONY: all clean distclean $(DOCS)
