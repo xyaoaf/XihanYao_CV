@@ -1,0 +1,59 @@
+name: build
+
+# Compile the LaTeX sources on every push to main and publish the PDFs to the
+# orphan `build` branch, which GitHub Pages serves. This gives a stable URL
+# that always points at the current CV.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Needed so the deploy step can force-push the build branch. Setting it here
+# avoids having to loosen the repository-wide Actions permission.
+permissions:
+  contents: write
+
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install TeX Live and fonts
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            latexmk biber \
+            texlive-xetex texlive-latex-extra texlive-bibtex-extra \
+            texlive-fonts-recommended texlive-fonts-extra \
+            texlive-lang-chinese \
+            fonts-noto-cjk fonts-noto-cjk-extra
+
+      # The sources pick their CJK font at compile time, so fail loudly here
+      # rather than silently falling through to a font this runner lacks.
+      - name: Check the CJK font is present
+        run: fc-list | grep -i "Noto Serif CJK SC" | head -3
+
+      - name: Build all documents
+        run: make
+
+      # Only the general CV and resume are published. The company-tailored
+      # variants are built above but deliberately kept off the public site.
+      - name: Assemble the site
+        run: |
+          mkdir -p site
+          cp cv.pdf resume.pdf index.html site/
+          touch site/.nojekyll
+          ls -l site
+
+      - name: Publish to the build branch
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./site
+          publish_branch: build
+          force_orphan: true
