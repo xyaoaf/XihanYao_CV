@@ -1,54 +1,83 @@
-# autoCV
+# Xihan Yao — CV and Resume
 
-A clean CV template in LaTeX along with a GitHub action that complies the `*.tex` file and publishes a new PDF version when new changes are pushed to the repo
+LaTeX sources for my academic CV and my job-search resume. Every push to `main`
+rebuilds the PDFs and publishes them, so these links always point at the
+current version:
 
-## Template Design
+- CV: <https://xyaoaf.github.io/XihanYao_CV/cv.pdf>
+- Resume: <https://xyaoaf.github.io/XihanYao_CV/resume.pdf>
+- <https://xyaoaf.github.io/XihanYao_CV/> redirects to the CV
 
-The template is designed to be clean with sections for
-- Tabular sections for Work Experience, Education and Projects
-- Support for including a list of publications read from a `*.bib` file
-- Header with Font Awesome icons
+## Documents
 
-## Quickstart
-- Fork this repo (you can use the `Use this template` button)
-- Give the workflow write permissions for your forked repo (Settings -> Actions -> General)
-- Modify the `cv.tex` file and push changes to your repo
-- Set GitHub pages source to build branch (Settings -> Pages)
-- The complied PDF will be available under the `build` branch
+| Source | What it is | Published |
+|---|---|---|
+| `cv.tex` | Full academic CV | yes |
+| `resume.tex` | General resume for job applications | yes |
+| `resume_ExxonMobil.tex` | Resume tailored to ExxonMobil | no |
+| `resume_ReadyNet.tex` | Resume tailored to ReadyNet | no |
 
-You can get a direct link to the generated PDF which you can use on your website, LinkedIn etc. that will always point to the latest version of your CV. Once your site is published, your CV will be accessible at: `https://username.github.io/repo-name/`
+The tailored resumes are compiled in CI as a check that they still build, but
+they are not published.
 
-NOTE: For the direct link to work, after editing your copy of `cv.tex` and pushing changes to your repo, under Settings -> Pages set your Github Pages source to the `build` directory
+## Public and private builds
 
-![](https://i.imgur.com/lwATw1o.png)
+The phone number is left out of the default build, because that is the build
+published to the public site. `make private` puts it back, for copies sent
+directly to people.
 
-## This template on Overleaf
+```sh
+make            # cv.pdf, resume.pdf, ...                  no phone; what CI publishes
+make private    # cv_private.pdf, resume_private.pdf, ...  with phone
+make cv         # one document only
+make clean      # remove intermediate files
+make distclean  # remove the PDFs as well
+```
 
-<a href="https://www.overleaf.com/latex/templates/autocv/scfvqfpxncwb"><img alt="Overleaf" src="https://img.shields.io/badge/Overleaf-47A141.svg?style=for-the-badge&logo=Overleaf&logoColor=white"/></a>
+Each source reads a `\PrivateBuild` flag that defaults to 0. `make private`
+sets it to 1 from the command line, so switching never means editing a
+source. Private PDFs get a different file name so the publish step cannot pick
+them up, and every PDF is gitignored.
 
-Also, if you have a premium subscription to Overleaf, you can use Overleaf's GitHub integration to push changes to your GitHub repo directly from Overleaf.
+## Building locally
 
-## Compiling the CV on your local computer
-- type `make` in the `autoCV` directory to produce file `cv.pdf`
-- you can optionally type `make clean` or `make distclean` to remove intermediate files
+Needs a TeX distribution with XeLaTeX, latexmk and biber (TeX Live or MacTeX).
+The sources load `fontspec` and `xeCJK`, so they compile with XeLaTeX only, not
+pdfLaTeX.
 
-## Detailed Instructions..
+Fonts:
 
-[.. are available here](https://github.com/jitinnair1/autoCV/wiki/How-to-use-autoCV:-Detailed-Instructions)
+- **TeX Gyre Termes, Heros and Cursor.** TeX Live ships these, but fontspec
+  looks fonts up by name in the system font database, and TeX Live does not
+  register them there. On macOS, copy them in once:
 
-## More options
-- If you'd like a custom URL like `cv.name.com` check out [this page](https://github.com/jitinnair1/autoCV/wiki/Custom-URL-for-your-CV)
-- If you want to add use different versions of the CV for different langauges, you can modify the script [as seen here](https://github.com/MateusRosario/myAutoCV/blob/main/.github/workflows/build.yml) (from Mateus Rosario's [fork](https://github.com/MateusRosario/myAutoCV) of this repo)  
+  ```sh
+  cp /usr/local/texlive/*/texmf-dist/fonts/opentype/public/tex-gyre/texgyre{termes,heros,cursor}-*.otf ~/Library/Fonts/
+  ```
 
-## Issues
-Please start a new discussion or issue if you encounter problems
+  A symlink is not enough; macOS does not follow it. On Debian or Ubuntu,
+  install `fonts-texgyre` instead.
 
-PS: If you liked the template, do star :star: it! Thanks!
+- **CJK.** The Chinese name in the CV header is set in Noto Serif CJK SC where
+  that font exists (Overleaf, the CI runner) and falls back to Songti SC on
+  macOS. Neither needs any setup.
 
+## Publishing
 
-### Also, check out:
+`.github/workflows/build.yml` runs on every push to `main`. It installs TeX Live
+and the fonts, checks that every font the sources name resolves, runs `make`,
+and force-pushes `cv.pdf`, `resume.pdf` and `index.html` to the orphan `build`
+branch, which GitHub Pages serves. A push is a release; nothing else needs
+doing by hand.
 
-- [gradfolio](https://github.com/jitinnair1/gradfolio) - a minimal, quick-setup template for a personal website/portfolio
-- [Tail](https://github.com/jitinnair1/tail) - a minimal, quick-setup template for a blog
-- [snippet-book](https://github.com/jitinnair1/snippet-book) -terminal style, clean Jekyll blog theme with catppuccin colours
+## Overleaf
 
+This repository is also linked to an Overleaf project through Overleaf's
+GitHub integration. That sync is manual in both directions: after pushing from
+here, pull the GitHub changes into Overleaf from its GitHub menu before editing
+there, or the two copies will diverge. This repository is the source of truth.
+
+## Credits
+
+Built on the [autoCV](https://github.com/jitinnair1/autoCV) template by Jitin
+Nair, MIT License.
