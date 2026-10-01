@@ -94,6 +94,14 @@
 \usepackage{amssymb} % Required for the diamond symbol (\lozenge)
 
 %----------------------------------------------------------------------------------------
+%	PRIVATE DETAILS
+%----------------------------------------------------------------------------------------
+% The phone number is omitted by default, because the default build is the one
+% CI publishes to the public site. `make private` defines \PrivateBuild as 1 on
+% the command line to include it, for copies sent directly to people.
+\providecommand{\PrivateBuild}{0}
+
+%----------------------------------------------------------------------------------------
 %	BEGIN DOCUMENT
 %----------------------------------------------------------------------------------------
 \begin{document}
@@ -106,7 +114,9 @@
 {\Huge Xihan Yao \quad {\Large 姚希翰}} \\[6pt]
 
 Austin, TX \ $|$ \
+\ifnum\PrivateBuild=1
 \href{tel:+13413339583}{\raisebox{-0.05\height}\faMobile\ +1 (341) 333 9583} \ $|$ \
+\fi
 \href{mailto:xyaoaf@utexas.edu}{\raisebox{-0.05\height}\faEnvelope\ xyaoaf@utexas.edu} \ $|$ \
 \href{https://www.linkedin.com/in/xihan-yao-6381b3181/}{\raisebox{-0.05\height}\faLinkedin\ LinkedIn} \ $|$ \
 \href{https://github.com/xyaoaf}{\raisebox{-0.05\height}\faGithub\ GitHub} \ $|$ \
