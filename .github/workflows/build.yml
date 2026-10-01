@@ -31,12 +31,25 @@ jobs:
             texlive-xetex texlive-latex-extra texlive-bibtex-extra \
             texlive-fonts-recommended texlive-fonts-extra \
             texlive-lang-chinese \
-            fonts-noto-cjk fonts-noto-cjk-extra
+            fonts-texgyre fonts-noto-cjk fonts-noto-cjk-extra
 
-      # The sources pick their CJK font at compile time, so fail loudly here
-      # rather than silently falling through to a font this runner lacks.
-      - name: Check the CJK font is present
-        run: fc-list | grep -i "Noto Serif CJK SC" | head -3
+      # fontspec resolves fonts by family name through fontconfig, not from the
+      # TeX tree. texlive-fonts-recommended ships the TeX Gyre files but does
+      # not register them, hence fonts-texgyre above. Check every font the
+      # sources name so a missing one fails here with a clear message instead
+      # of as a wall of fontspec errors during the build.
+      - name: Check required fonts resolve by name
+        run: |
+          status=0
+          for f in "TeX Gyre Termes" "TeX Gyre Heros" "TeX Gyre Cursor" "Noto Serif CJK SC"; do
+            if fc-list | grep -qi "$f"; then
+              echo "ok       $f"
+            else
+              echo "MISSING  $f"
+              status=1
+            fi
+          done
+          exit $status
 
       - name: Build all documents
         run: make
